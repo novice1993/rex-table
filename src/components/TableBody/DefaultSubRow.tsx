@@ -21,18 +21,23 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
     }
   };
 
-  const handleClickSubRowCell = (
-    e: React.MouseEvent<HTMLTableCellElement>,
-    cellIndex: number,
-    rowIndex: number,
-    itemIndex: number
-  ) => {
+  const handleClickSubRowCell = ({
+    e,
+    cellIndex,
+    parentRowIndex,
+    subRowIndex,
+  }: {
+    e: React.MouseEvent<HTMLTableCellElement>;
+    cellIndex: number;
+    parentRowIndex: number;
+    subRowIndex: number;
+  }) => {
     if (subRowCellClickEvent) {
-      subRowCellClickEvent({ cellIndex, rowIndex, itemIndex, e });
+      subRowCellClickEvent({ cellIndex, parentRowIndex, subRowIndex, e });
     }
   };
 
-  return contents.map((content, itemIndex) => {
+  return contents.map((content, subRowIndex) => {
     const values = Object.values(content as object);
     key.current += 1;
 
@@ -45,7 +50,12 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
               style={{ ...style, ...subRowStyle }}
               className={className}
               onClick={(e) =>
-                handleClickSubRowCell(e, cellIndex, rowIndex, itemIndex)
+                handleClickSubRowCell({
+                  e,
+                  cellIndex,
+                  parentRowIndex: rowIndex,
+                  subRowIndex,
+                })
               }
             >
               {value}

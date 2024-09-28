@@ -5,23 +5,24 @@ import React, {
   ReactNode,
   useContext,
 } from "react";
-import DefaultTableContainer from "../components/TableContainer/DefaultTableContainer";
+import TableContainer from "../components/TableContainer/TableContainer";
 import { Row } from "@tanstack/react-table";
 
 interface TableContextProps {
   SubRowComponent?: ComponentType<{ contents: Array<object> }>;
   useParentRowUi?: boolean;
   rowClickEvent?: (row: Row<unknown>) => void;
+
   subRowClickEvent?: () => void;
   subRowCellClickEvent?: ({
     cellIndex,
-    rowIndex,
-    itemIndex,
+    parentRowIndex,
+    subRowIndex,
     e,
   }: {
     cellIndex: number;
-    rowIndex?: number;
-    itemIndex?: number;
+    parentRowIndex?: number;
+    subRowIndex?: number;
     e?: React.MouseEvent<HTMLTableCellElement>;
   }) => void;
 }
@@ -47,7 +48,6 @@ const TableContext = createContext<TableContextProps | null>(null);
 
 export const TableProvider = (props: PropsWithChildren<TableProviderProps>) => {
   const {
-    TableContainer = DefaultTableContainer,
     SubRowComponent,
     useParentRowUi,
     rowClickEvent,
