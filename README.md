@@ -1,9 +1,9 @@
 ## 1. Introduction
 
-- tanstack/react-table, jotai를 활용해 구현된 테이블 라이브러리입니다.
-- React 기반의 프로젝트에서 활용이 가능합니다.
-- 테이블 column/data 설정, _sorting, pagination, 테이블 데이터 커스텀 기능을 제공합니다.
-  <span style="color: darkgray;"> _ sorting 기능은 "No"라는 이름을 가진 column에 제한적으로 적용됩니다</span>
+- `tanstack/react-table`, `jotai`를 활용해 구현된 테이블 라이브러리입니다.
+- `React` 기반의 프로젝트에서 활용이 가능합니다.
+- 테이블 column/data 설정, sorting, pagination, 테이블 데이터 커스텀 기능을 제공합니다.
+  <span style="color: darkgray;"> sorting 기능은 "No"라는 이름을 가진 column에 제한적으로 적용됩니다</span>
 - headless UI로 제작되어 자유롭게 스타일링 커스텀이 가능합니다.
 
 ## 2. Dependencies (Libraries Used)
@@ -64,24 +64,25 @@
 
 #### 1) TableProvider
 
-- TableHeader, TableBody, TableFooter를 감싸는 최상위 컴포넌트로, 각 컴포넌트에서 활용되는 props를 전달하는 역할을 수행합니다.
+- `TableHeader`, `TableBody`, `TableFooter`를 감싸는 최상위 컴포넌트로, 각 컴포넌트에서 활용되는 `props`를 전달하는 역할을 수행합니다.
+- `TableProvider` 를 호출하여 활용 시, 전달해야 하는 `props` 는 아래와 같습니다.
 
-| Props             | explain                                                            | required |
-| ----------------- | ------------------------------------------------------------------ | -------- |
-| `SubRowComponent` | Custom SubRow 활용이 필요할 때 props로 전달하여 활용할 수 있습니다 | optional |
-| `subtitle`        | 부제목을 나타냅니다.                                               | 선택     |
-| `onClick`         | 클릭 이벤트 핸들러                                                 | 필수     |
-| `disabled`        | 버튼 비활성화 여부                                                 | 선택     |
-| `style`           | 추가 스타일 설정                                                   | 선택     |
+| Props                  | Type        | Explain                                                                                                                                                                                                     | Required   |
+| ---------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `SubRowComponent`      | `ReactNode` | `SubRow` 커스텀이 필요할 경우, 직점 컴포넌트를 전달하여 활용합니다.                                                                                                                                         | `optional` |
+| `useParentRowUi`       | `boolean`   | `SubRow` 활용 시, 부모 Row의 UI를 그대로 활용할지 여부를 결정합니다.                                                                                                                                        | `optional` |
+| `rowClickEvent`        | `function`  | `Table` 의 행을 클릭할 때 작동하는 함수입니다.                                                                                                                                                              | `optional` |
+| `subRowClickEvent`     | `function`  | `Sub Row` 의 행을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
+| `subRowCellClickEvent` | `function`  | `Sub Row` 의 각 셀을 클릭할 때 작동하는 함수입니다. (상동)                                                                                                                                                  | `optional` |
 
 #### 2) TableContainer
 
-<div>- TableProvider 내부에 위치하여 TableHeader, TableBody, TableFooter를 감싸는 최상위 UI 컴포넌트로 테이블에 공통으로 적용되어야 할 스타일을 설정합니다.</div>
+- `TableProvider` 내부에 위치하여 `TableHeader`, `TableBody`, `TableFooter`를 감싸는 최상위 UI 컴포넌트로 테이블에 공통으로 적용되어야 할 스타일을 설정합니다.
 
 #### 3) TableHeader
 
-<div>- 테이블 열 (column) 제목을 렌더링하는 컴포넌트입니다.</div>
-<div>- header option을 props로 전달하여 열 제목의 layer, rowSpan, colSpan 을 제어할 수 있습니다.</div>
+- 테이블 열 (column) 제목을 렌더링하는 컴포넌트입니다.
+- `header option` 을 `props` 로 전달하여 열 제목의 `layer`, `rowSpan`, `colSpan` 을 제어할 수 있습니다.
 
 #### 4) TableBody
 
