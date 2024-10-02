@@ -1,11 +1,10 @@
 ## 1. Introduction
 
-<div>- tanstack/react-table, jotai를 활용해 구현된 테이블 라이브러리입니다.</div>
-<div>- React 기반의 프로젝트에서 활용이 가능합니다.</div>
-<div>- 테이블 column/data 설정, *sorting, pagination, 테이블 데이터 커스텀 기능을 제공합니다. <br/>
-* sorting 기능은 "No"라는 이름을 가진 column에 제한적으로 적용됩니다.
-</div>
-<div>- headless UI로 제작되어 자유롭게 스타일링 커스텀이 가능합니다.</div>
+- tanstack/react-table, jotai를 활용해 구현된 테이블 라이브러리입니다.
+- React 기반의 프로젝트에서 활용이 가능합니다.
+- 테이블 column/data 설정, _sorting, pagination, 테이블 데이터 커스텀 기능을 제공합니다.
+  <span style="color: darkgray;"> _ sorting 기능은 "No"라는 이름을 가진 column에 제한적으로 적용됩니다</span>
+- headless UI로 제작되어 자유롭게 스타일링 커스텀이 가능합니다.
 
 ## 2. Dependencies (Libraries Used)
 
@@ -16,14 +15,14 @@
 
 #### 1) Dependencies
 
-<div>- @tanstack/react-table (^8.20.5)</div>
-<div>- jotai (^2.9.3)</div>
-<div>- jotai-immer (^18.3.1)</div>
+- @tanstack/react-table (^8.20.5)
+- jotai (^2.9.3)
+- jotai-immer (^18.3.1)
 
 #### 2) PeerDependencies
 
-<div>- react (^18.3.1)</div>
-<div>- react-dom (^18.3.1)</div>
+- react (^18.3.1)
+- react-dom (^18.3.1)
 
 ## 3. Structure (Directories and Files)
 
@@ -65,7 +64,15 @@
 
 #### 1) TableProvider
 
-<div>- TableHeader, TableBody, TableFooter를 감싸는 최상위 컴포넌트로, 각 컴포넌트에서 활용되는 props를 전달하는 역할을 수행합니다.</div>
+- TableHeader, TableBody, TableFooter를 감싸는 최상위 컴포넌트로, 각 컴포넌트에서 활용되는 props를 전달하는 역할을 수행합니다.
+
+| Props             | explain                                                            | required |
+| ----------------- | ------------------------------------------------------------------ | -------- |
+| `SubRowComponent` | Custom SubRow 활용이 필요할 때 props로 전달하여 활용할 수 있습니다 | optional |
+| `subtitle`        | 부제목을 나타냅니다.                                               | 선택     |
+| `onClick`         | 클릭 이벤트 핸들러                                                 | 필수     |
+| `disabled`        | 버튼 비활성화 여부                                                 | 선택     |
+| `style`           | 추가 스타일 설정                                                   | 선택     |
 
 #### 2) TableContainer
 
