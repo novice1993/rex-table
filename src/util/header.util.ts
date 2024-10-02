@@ -34,7 +34,7 @@ const groupByDepthAndSort = <T>(
   return grouped;
 };
 
-export const getHeader = <T>({ table, headerOptionType }: TableProps<T>) => {
+export const getHeader = <T>({ table, headerOption }: TableProps<T>) => {
   let result;
 
   const tableHeaderData = table.getHeaderGroups();
@@ -53,7 +53,7 @@ export const getHeader = <T>({ table, headerOptionType }: TableProps<T>) => {
   result = result.map((headers) => {
     const accessorKey = headers.column.id;
 
-    headerOptionType?.forEach((option) => {
+    headerOption?.forEach((option) => {
       if (option.accessorKey === accessorKey) {
         headers.depth = option.layer;
         headers.colSpan = option.colSpan;

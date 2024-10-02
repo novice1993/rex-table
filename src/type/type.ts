@@ -9,7 +9,7 @@ export interface HeaderOptionType {
 }
 export interface TableProps<T> {
   table: Table<T>;
-  headerOptionType?: HeaderOptionType[];
+  headerOption?: HeaderOptionType[];
   style?: CSSProperties;
   className?: string;
 }
