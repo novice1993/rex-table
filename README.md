@@ -169,12 +169,15 @@
 
 #### 7) Type
 
-| Type               | Explain                                                              |
-| ------------------ | -------------------------------------------------------------------- |
-| `ColumnDef`        | `useTable` 의 파라미터 `columns` 데이터 관련 `Type` 입니다.          |
-| `Row`              | `TableBodyRow` 에 활용되는 `Row` 데이터 관련 `Type` 입니다.          |
-| `Cell`             | `TableBodyCell` 에 활용되는 `Cell` 데이터 관련 `Type` 입니다.        |
-| `HeaderOptionType` | `TableHeader` 에 전달하는 `headerOption` `props` 관련 `Type` 입니다. |
+- `props` 데이터, 커스텀 훅 및 이벤트 핸들러의 파라미터 설정 시 활용되는 `Type` 입니다.
+  | Type | Explain |
+  | ------------------ | -------------------------------------------------------------------- |
+  | `ColumnDef` | `useTable` 의 파라미터 `columns` 데이터 관련 `Type` 입니다. |
+  | `Row` | `TableBodyRow` 에 활용되는 `Row` 데이터 관련 `Type` 입니다. |
+  | `Cell` | `TableBodyCell` 에 활용되는 `Cell` 데이터 관련 `Type` 입니다. |
+  | `HeaderOptionType` | `TableHeader` 에 전달하는 `headerOption` `props` 관련 `Type` 입니다. |
+
+  <br/>
 
 ## 4. Logic (How it Works)
 
