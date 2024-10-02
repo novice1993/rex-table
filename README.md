@@ -68,14 +68,13 @@
 
 - `TableHeader`, `TableBody`, `TableFooter`를 감싸는 `Provider`로, 각 컴포넌트에 `props`를 전달하는 역할을 수행합니다.
 - 컴포넌트 호출 시 전달해야 하는 `props`는 아래와 같습니다.
-
-| Props                  | Type        | Explain                                                                                                                                                                                                        | Required   |
-| ---------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `SubRowComponent`      | `ReactNode` | `SubRow` 커스텀이 필요할 경우, 직점 컴포넌트를 전달하여 활용합니다.                                                                                                                                            | `optional` |
-| `useParentRowUi`       | `boolean`   | `SubRow` 활용 시, 부모 Row의 UI를 그대로 활용할지 여부를 결정합니다.                                                                                                                                           | `optional` |
-| `rowClickEvent`        | `function`  | `Table` 의 행을 클릭할 때 작동하는 함수입니다.                                                                                                                                                                 | `optional` |
-| `subRowClickEvent`     | `function`  | `Sub Row` 의 행을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당    | `optional` |
-| `subRowCellClickEvent` | `function`  | `Sub Row` 의 각 셀을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
+  | Props | Type | Explain | Required |
+  | ---------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+  | `SubRowComponent` | `ReactNode` | `SubRow` 커스텀이 필요할 경우, 직점 컴포넌트를 전달하여 활용합니다. | `optional` |
+  | `useParentRowUi` | `boolean` | `SubRow` 활용 시, 부모 Row의 UI를 그대로 활용할지 여부를 결정합니다. | `optional` |
+  | `rowClickEvent` | `function` | `Table` 의 행을 클릭할 때 작동하는 함수입니다. | `optional` |
+  | `subRowClickEvent` | `function` | `Sub Row` 의 행을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
+  | `subRowCellClickEvent` | `function` | `Sub Row` 의 각 셀을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
 
 <br/>
 
@@ -84,24 +83,22 @@
 - 테이블 열 `column` 제목을 렌더링하는 컴포넌트입니다.
 - `header option` 을 통해 `layer`, `rowSpan`, `colSpan` 을 제어할 수 있습니다.
 - 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
-
-| Props          | Type               | Explain                                                                    | Required   |
-| -------------- | ------------------ | -------------------------------------------------------------------------- | ---------- |
-| `table`        | `Table<TData>`     | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다.      | `required` |
-| `style`        | `CSSProperties`    | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다.                    | `optional` |
-| `className`    | `string`           | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다.           | `optional` |
-| `headerOption` | `HeaderOptionType` | `header` 렌더링과 관련된 세부 속성을 설정합니다. (자세한 설명 하단에 첨부) | `optional` |
+  | Props | Type | Explain | Required |
+  | -------------- | ------------------ | -------------------------------------------------------------------------- | ---------- |
+  | `table` | `Table<TData>` | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다. | `required` |
+  | `style` | `CSSProperties` | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다. | `optional` |
+  | `className` | `string` | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다. | `optional` |
+  | `headerOption` | `HeaderOptionType` | `header` 렌더링과 관련된 세부 속성을 설정합니다. (자세한 설명 하단에 첨부) | `optional` |
 
 <br/>
 
 - `header option` 의 `type` 은 아래와 같습니다.
-
-| Property      | Type     | Explain                                                                 |
-| ------------- | -------- | ----------------------------------------------------------------------- |
-| `accessorKey` | `string` | `header` 와 `header option`을 매핑하는 `key` 값 입니다.                 |
-| `layer`       | `number` | `header` 가 몇 번째 줄에서 시작할지 결정하는 값입니다.                  |
-| `rowSpan`     | `number` | 설정한 `layer` 를 기준으로 `header` 가 차지할 높이를 결정하는 값입니다. |
-| `colSpan`     | `number` | `header` 가 차지할 너비를 결정하는 값입니다.                            |
+  | Property | Type | Explain |
+  | ------------- | -------- | ----------------------------------------------------------------------- |
+  | `accessorKey` | `string` | `header` 와 `header option`을 매핑하는 `key` 값 입니다. |
+  | `layer` | `number` | `header` 가 몇 번째 줄에서 시작할지 결정하는 값입니다. |
+  | `rowSpan` | `number` | 설정한 `layer` 를 기준으로 `header` 가 차지할 높이를 결정하는 값입니다. |
+  | `colSpan` | `number` | `header` 가 차지할 너비를 결정하는 값입니다. |
 
 <br/>
 
@@ -109,13 +106,12 @@
 
 - 실제 테이블 데이터를 렌더링하는 컴포넌트로, 각 행 `TableBodyRow` 와 이를 구성하는 셀 `TableBodyCell` 로 구성되어 있습니다.
 - 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
-
-| Props         | Type            | Explain                                                                                                                                                                                                                         | Required   |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| `table`       | `Table<TData>`  | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다.                                                                                                                                                           | `required` |
-| `style`       | `CSSProperties` | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다.                                                                                                                                                                         | `optional` |
-| `className`   | `string`        | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다.                                                                                                                                                                | `optional` |
-| `subRowStyle` | `CSSProperties` | `subRow` 에 대한 `CSS` 커스텀이 필요할 경우, 해당 속성을 통해 적용이 가능합니다. <br/><br/> \* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 커스텀 하면 됨 | `optional` |
+  | Props | Type | Explain | Required |
+  | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+  | `table` | `Table<TData>` | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다. | `required` |
+  | `style` | `CSSProperties` | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다. | `optional` |
+  | `className` | `string` | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다. | `optional` |
+  | `subRowStyle` | `CSSProperties` | `subRow` 에 대한 `CSS` 커스텀이 필요할 경우, 해당 속성을 통해 적용이 가능합니다. <br/><br/> \* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 커스텀 하면 됨 | `optional` |
 
 #### 4) TableFooter
 
@@ -127,92 +123,60 @@
      <br/>
 
 - 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
-
-| Props           | Type                                        | Explain                                                                                                 | Required   |
-| --------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- |
-| `pagination`    | `PaginationState`                           | `useTable` 훅이 반환하는 페이지네이션 관련 상태입니다.                                                  | `required` |
-| `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | `useTable` 훅이 반환하는 페이지네이션 관련 상태관리 함수입니다.                                         | `required` |
-| `totalPageNum`  | `number`                                    | `useTable` 훅이 반환하는 전체 페이지 개수 관련 데이터입니다.                                            | `required` |
-| `pageSizeList`  | `Array<number>`                             | 한 페이지 당 표시할 컨텐츠 개수에 대한 옵션 리스트로, 기본 값으로 `[10, 15, 20, 25, 30]` 을 제공합니다. | `optional` |
+  | Props | Type | Explain | Required |
+  | --------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- |
+  | `pagination` | `PaginationState` | `useTable` 훅이 반환하는 페이지네이션 관련 상태입니다. | `required` |
+  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | `useTable` 훅이 반환하는 페이지네이션 관련 상태관리 함수입니다. | `required` |
+  | `totalPageNum` | `number` | `useTable` 훅이 반환하는 전체 페이지 개수 관련 데이터입니다. | `required` |
+  | `pageSizeList` | `Array<number>` | 한 페이지 당 표시할 컨텐츠 개수에 대한 옵션 리스트로, 기본 값으로 `[10, 15, 20, 25, 30]` 을 제공합니다. | `optional` |
 
 <br/>
 
 #### 5) useTable
 
-- 테이블 설정을 위한 데이터를 반환하는 커스텀 훅입니다. 전체 테이블 데이터 (header, body)와 페이지네이션 관련 데이터를 반환합니다.
+- `TableHeader`, `TableBody`, `TableFooter` 컴포넌트의 `props`로 전달할 데이터를 반환하는 커스텀 훅입니다.
+- 훅 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
+  | Props | Type | Explain | Required |
+  | -------------- | --------------------- | ----------------------------------------------- | ---------- |
+  | `data` | `Array<T>` | 테이블 `body` 를 구성하는 데이터입니다. | `required` |
+  | `columns` | `Array<ColumnDef<T>>` | 테이블 `column` 설정에 활용되는 데이터입니다. | `required` |
+  | `isPagination` | `boolean` | 페이지네이션 설정 여부를 결정하는 데이터입니다. | `optional` |
+
+<br/>
+
+- 훅이 반환하는 값은 아래와 같습니다.
+  | Returned Value | Type | Explain |
+  | ---------------- | ------------------- | -------------------------------------------- |
+  | `table` | `Table<TData>` | 테이블 설정에 활용되는 인스턴스 객체입니다. `TableHeader`, `TableBody` 의 `props` 로 활용됩니다. |
+  | `pagination` | `PaginationState` | 페이지네이션 관련 상태입니다. `TableFooter`의 `props` 로 활용됩니다. |
+  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | 페이지네이션 관련 상태관리 함수입니다. `TableFooter`의 `props` 로 활용됩니다. |
+
+<br/>
 
 #### 6) useSubRowContent
 
-##### <div>- 모듈 구현 시 사용되는 tanstack-query 활용과 관련된 함수 및 Provider 입니다.</div>
+- `SubRow` 에 활용되는 데이터를 조회, 수정하는 함수를 반환하는 커스텀 훅입니다.
+- 내부적으로 `jotai atom` 을 활용하여 값을 저장합니다.
+- 훅이 반환하는 값은 아래와 같습니다.
+  | Returned Value | Explain |
+  | --------------------------- | ------------------------------------------------------------------------------------------------- |
+  | `getSubRowContentOfEntire` | 전체 `SubRow` 데이터를 조회하는 함수입니다. |
+  | `setSubRowContentOfEntire` | 전체 `SubRow` 데이터를 수정하는 함수입니다. |
+  | `getSubRowContentOfSelected` | 특정 `Row`에 종속되는 `SubRow` 데이터를 조회하는 함수입니다. |
+  | `setSubRowContentOfSelected` | 특정 `Row`에 종속되는 `SubRow` 데이터를 수정하는 함수입니다. |
 
-- QueryProvider : tanstack-query 저장소 활용을 위해 설정해야 하는 Provider
-- filterStoredQueries : tanstack-query로 캐싱한 데이터를 브라우저 스토리지와 연동할 때 사용되는 함수 <br/>(캐싱 데이터 중 필요한 것만 선택해서 스토리지에 sava/load 할 수 있도록 처리)
-- useGetCachingData : tanstack-query로 캐싱한 데이터를 필요한 컴포넌트에서 호출할 때 사용되는 Custom Hook
+<br/>
 
-#### 6) Type
+#### 7) Type
 
-##### <div>- 모듈 구성에 활용되는 기타 요소들입니다.</div>
-
-- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
-- type : useAuthManager 관련된 type
-- atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태
-- atom/authStateAtom : 로그인 여부와 관련된 전역상태
-- atom/authTypeAtom : 인증 방식에 관련된 전역상태 (JWT Token 방식인지, 서버 Session 방식인지)
-- util/convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
-- util/selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
+| Type               | Explain                                                              |
+| ------------------ | -------------------------------------------------------------------- |
+| `ColumnDef`        | `useTable` 의 파라미터 `columns` 데이터 관련 `Type` 입니다.          |
+| `Row`              | `TableBodyRow` 에 활용되는 `Row` 데이터 관련 `Type` 입니다.          |
+| `Cell`             | `TableBodyCell` 에 활용되는 `Cell` 데이터 관련 `Type` 입니다.        |
+| `HeaderOptionType` | `TableHeader` 에 전달하는 `headerOption` `props` 관련 `Type` 입니다. |
 
 ## 4. Logic (How it Works)
-
-![Logic_Diagram](./asset/logic_diagram.jpg)
-
-##### 0) 초기 값 지정
-
-- 브라우저 스토리지에 저장된 데이터가 있는지 체크 후, 있을 시 초기 값으로 지정
-- 관련 데이터 : 로그인 상태 (AUTH_STATE), 인증 정보 (AUTH_INFO)
-- 로그인 상태, 인증 정보가 갱신될 때마다 브라우저 스토리지 데이터 역시 갱신 됨
-
-##### 1) 최초 로그인 (브라우저 스토리지에 저장된 데이터 없다고 가정)
-
-- 로그인 페이지에서 로그인 시, Recoil Provider로 관리 중인 전역 상태 변경 됨 (authStateAtom)
-
-##### 2) 인증 정보 관리 (초기 값 설정, 갱신)
-
-- authStateAtom 의 상태 변경이 useAuthManager로 전달 됨
-- 이를 통해 로그인 되었음을 인지하고, 초기 인증 값을 받아옴 (setInitAuth 함수 호출)
-- 만약 갱신 조건이 참이라면 (useAuthManager의 파라미터 중, isRenew가 true이면) 갱신 주기 (renewInterval) 에 맞춰 인증 값이 갱신 됨 (setAuthRenew 함수 반복 호출)
-
-##### 3-1) 인증 정보 캐싱 처리
-
-- 서버에서 인증 정보를 수신할 때마다 tanstack-query Provider를 활용하여 데이터 캐싱 처리 (설정한 key 값에 매핑)
-- 최초 인증 정보 key : loginInfo
-- 갱신 인증 정보 key : tokenInfo
-
-##### 3-2) 인증 만료 시간 설정
-
-- 최초 로그인 시 받아온 데이터 중 인증 만료시간 (expireTime) 활용하여 만료 카운트 다운 실행
-- 특정 동작 (새로고침, 페이지 경로 변경) 수행 시 만료 시간 초기화
-
-##### 4) 인증 정보 활용
-
-- tanstack-qeury Provider 에 캐싱해놓은 인증 정보 활용하여 HTTP/HTTPS 통신 (haeder의 Authorization 설정)
-
-##### 5) 인증 정보 만료
-
-- 인증 정보 만료될 시 로그아웃 상태로 변경 (authStateAtom 변경)
-
-##### 6) 로그아웃 관련 처리
-
-- authStateAtom가 로그아웃으로 변경됨을 감지하고 관련 작업 처리
-<ul>
-
-1. 로그인 페이지로 브라우저 경로 이동</br>
-2. tanstack-query Provider에 캐싱된 데이터 제거 요청</br>
-3. 브라우저 스토리지에 저장된 데이터 제거</br>
-</ul>
-
-##### 7) 캐싱 데이터 제거
-
-- useAuth에서 보낸 요청을 수신하여 캐싱 데이터 제거 (loginInfo, tokenInfo)
 
 ## 5. Usage (Sample Code)
 
@@ -220,163 +184,13 @@
 
 - config.ts 파일에서 아래의 두 가지를 설정
 
-1. 브라우저 스토리지 종류
-2. 서버 API 엔드포인트 (현재 환경변수 import 해서 활용하는 형태로 구현)
-
-```
-export enum StorageType {
-  SESSION_STORAGE = "sessionStorage",
-  LOCAL_STORAGE = "localStorage",
-}
-
-export const storageType = StorageType.SESSION_STORAGE;
-export const serverUrl = process.env.REACT_APP_SERVER_URL;
-```
-
 <br/>
 
 ##### 2) ./aboutReactQuery/QueryProvider.tsx
 
-- Root Component (ex. index.tsx) 에 Provider 설정 (QueryProvider, RecoilProvider)
-
-```
-import ReactDOM from 'react-dom/client';
-import { router } from 'Routes';
-import { RouterProvider } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-
-import QueryProvider from 'module/aboutReactQuery/QueryProvider';
-import AppProvider from 'providers/AppProvider';
-import BreakpointsProvider from 'providers/BreakpointsProvider';
-import SettingsPanelProvider from 'providers/SettingsPanelProvider';
-import ModalProvider from 'providers/ModalProvider';
-
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-root.render(
-  <QueryProvider>
-    <RecoilRoot>
-      <AppProvider>
-        <SettingsPanelProvider>
-          <BreakpointsProvider>
-            <ModalProvider>
-              <RouterProvider router={router} />
-            </ModalProvider>
-          </BreakpointsProvider>
-        </SettingsPanelProvider>
-      </AppProvider>
-    </RecoilRoot>
-  </QueryProvider>
-);
-
-```
-
 <br/>
 
 ##### 3) ./useAuthManager/useAuthManager.ts
-
-- Root Component를 제외한 최상단 컴포넌트에서 useAuthManager 호출
-- useAuthManger에 전달하는 parameter 통해 세부 동작 제어 (./type/type.ts 참고)
-
-<table>
-  <thead>
-    <tr style="text-align:center;">
-      <th>Parameter</th>
-      <th>Type</th>
-      <th>Required</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="text-align:center;">
-      <td>authType</td>
-      <td>jwtToken / sessionCookie</td>
-      <td>O</td>
-      <td>인증 타입 (토큰, 세션)</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>isRenew</td>
-      <td>boolean</td>
-      <td>O</td>
-      <td>인증 정보 갱신 여부</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>renewInterval</td>
-      <td>number</td>
-      <td>조건부 (isRenew = true 일 때)</td>
-      <td>갱신 주기</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>authEndTime</td>
-      <td>number</td>
-      <td>X</td>
-      <td>인증 만료 시간</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>keyName</td>
-      <td><div>{ token?: string, </div>
-      <div>expireTime: string }</div>
-      </td>
-      <td>
-      <div>{ token: 조건부 (authType === 'jwtToken' 일 때),</div>
-      <div>expireTime: 필수 }</div>
-       </td>
-      <td>서버 response의 프로퍼티 명 (토큰, 만료시간 관련 데이터가 담겨오는 Prop Name)</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>clientRoutePath</td>
-      <td>
-      <div>{ initPagePath: string,</div>
-      <div>loginPagePath: string }</div>
-       </td>
-      <td>O</td>
-      <td>loginPage, initPage 관련 클라이언트 경로</td>
-    </tr>
-    <tr style="text-align:center;">
-      <td>serverUrl</td>
-      <td>
-      <div>{ logoutUrl: string,</div>
-      <div>authRenewUrl?: string }</div>
-       </td>
-      <td>
-      <div>{ logoutUrl: 필수,</div>
-      <div>authRenewUrl: 조건부 (isRenew = true 일 때) }</div>
-       </td>
-      <td>logout, authRenew 관련 서버 api 경로</td>
-    </tr>
-  </tbody>
-</table>
-
-<br/>
-
-```
-import { PropsWithChildren } from 'react';
-import useAuthManager from 'module/useAuthManager/useAuthManager';
-
-const Root = ({ children }: PropsWithChildren) => {
-  useAuthManager({
-    authType: 'jwtToken',
-    isRenew: true,
-    renewInterval: 1000 * 60,
-    keyName: {
-      token: 'userToken',
-      expireTime: 'userTokenExpire'
-    },
-    clientRoutePath: {
-      loginPagePath: '/auths/sign-in',
-      initPagePath: '/dashboard'
-    },
-    serverUrl: {
-      logoutUrl: '/api/v1/sign/signOut',
-      authRenewUrl: '/api/v1/sign/signRenew'
-    }
-  });
-
-  return <>{children}</>;
-};
-
-export default Root;
-```
 
 ## 6. issue
 
