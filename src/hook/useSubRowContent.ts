@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { subRowContentsAtom } from "../atom/subRowContentsAtom";
 
-export const useSubRowContent = () => {
+const useSubRowContent = () => {
   const [contents, setContents] = useAtom(subRowContentsAtom);
 
   const getSubRowContentOfEntrie = () => {
@@ -33,3 +33,5 @@ export const useSubRowContent = () => {
     setSubRowContenttOfSelected,
   };
 };
+
+export default useSubRowContent;

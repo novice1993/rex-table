@@ -1,17 +1,24 @@
 ## 1. Introduction
 
-- `tanstack/react-table`, `jotai`를 활용해 구현된 테이블 라이브러리입니다.
-- `React` 기반의 프로젝트에서 활용이 가능합니다.
-- 테이블 column/data 설정, sorting, pagination, 테이블 데이터 커스텀 기능을 제공합니다.
-  <span style="color: darkgray;"> sorting 기능은 "No"라는 이름을 가진 column에 제한적으로 적용됩니다</span>
-- headless UI로 제작되어 자유롭게 스타일링 커스텀이 가능합니다.
+[\* 한국어 문서를 보려면 여기를 클릭하세요](<./README(ko).md>)
 
-## 2. Dependencies (Libraries Used)
+- This is a table library implemented using `tanstack/react-table` and `jotai`.
+- It can be used in `React`-based projects.
+- Provides table column/data settings, sorting, pagination, and custom table data functionality.
+  <span style="color: darkgray;"> The sorting feature is limited to columns named "No".</span>
+- It is designed as a headless UI, allowing for flexible styling and customization.
 
-##### \* 버전 기준일 : 2024년 9월
+## 2. Installation
 
-- 라이브러리는 명시된 버전 이상을 사용하는 것이 권장됩니다.
-- 각 라이브러리의 버전은 모듈 개발 당시 안정화된 최신 버전을 기준으로 합니다.
+- using npm : `npm install tan-table`
+- using yarn : `yarn add tan-table`
+
+## 3. Dependencies (Libraries Used)
+
+##### \* Version reference date: September 2024
+
+- It is recommended to use the library with the versions specified or higher.
+- The versions of each library are based on the most stable versions at the time of module development.
 
 #### 1) Dependencies
 
@@ -24,9 +31,9 @@
 - react (^18.3.1)
 - react-dom (^18.3.1)
 
-## 3. Structure (Directories and Files)
+## 4. Structure (Directories and Files)
 
-<span style="color: gray;">\* 하단의 폴더 트리에서 빨간색으로 표시한 부분이 라이브러리 사용 시 활용되는 요소들입니다.</span>
+<span style="color: gray;">\* In the folder tree below, the parts highlighted in red are elements used when utilizing the library.</span>
 
 <pre>
 📦src
@@ -37,14 +44,14 @@
  ┃ ┃ ┣ 📜DefaultSubRow.tsx
  ┃ ┃ ┣ 📜TableBodyCell.tsx
  ┃ ┃ ┣ 📜TableBodyRow.tsx
- ┃ ┃ ┣ 📜TableSubRow.tsx
+ ┃ ┃ ┗ 📜TableSubRow.tsx
  ┃ ┃ ┗ 📜index.tsx
  ┃ ┣ 📂TableContainer
  ┃ ┃ ┗ 📜TableContainer.tsx
  ┃ ┣ <span style="color: red;">📂TableFooter</span>
  ┃ ┃ ┣ 📜TablePageNumbers.tsx
  ┃ ┃ ┣ 📜TablePageSizeSelect.tsx
- ┃ ┃ ┣ 📜TablePagination.tsx
+ ┃ ┃ ┗ 📜TablePagination.tsx
  ┃ ┃ ┗ 📜index.tsx
  ┃ ┗ <span style="color: red;">📂TableHeader</span>
  ┃ ┃ ┣ 📜TableHeaderCell.tsx
@@ -66,136 +73,121 @@
 
 #### 1) TableProvider
 
-- `TableHeader`, `TableBody`, `TableFooter`를 감싸는 `Provider`로, 각 컴포넌트에 `props`를 전달하는 역할을 수행합니다.
-- 컴포넌트 호출 시 전달해야 하는 `props`는 아래와 같습니다.
+- `TableProvider` wraps `TableHeader`, `TableBody`, and `TableFooter`, serving to pass `props` to each component.
+- The `props` to be passed when calling the component are as follows.
   | Props | Type | Explain | Required |
   | ---------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-  | `SubRowComponent` | `ReactNode` | `SubRow` 커스텀이 필요할 경우, 직점 컴포넌트를 전달하여 활용합니다. | `optional` |
-  | `useParentRowUi` | `boolean` | `SubRow` 활용 시, 부모 Row의 UI를 그대로 활용할지 여부를 결정합니다. | `optional` |
-  | `rowClickEvent` | `function` | `Table` 의 행을 클릭할 때 작동하는 함수입니다. | `optional` |
-  | `subRowClickEvent` | `function` | `Sub Row` 의 행을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
-  | `subRowCellClickEvent` | `function` | `Sub Row` 의 각 셀을 클릭할 때 작동하는 함수입니다. <br/><br/>\* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 클릭 이벤트를 생성하여 할당 | `optional` |
+  | `SubRowComponent` | `ReactNode` | Used when customizing the `SubRow`, pass the component directly for customization. | `optional` |
+  | `useParentRowUi` | `boolean` | Determines whether to use the parent row UI when using `SubRow`. | `optional` |
+  | `rowClickEvent` | `function` | Function triggered when a row in the `Table` is clicked. | `optional` |
+  | `subRowClickEvent` | `function` | Function triggered when a row in the `SubRow` is clicked. <br/><br/>\* Applicable only when `useParentRowUi` is set to `true`. <br/> If `SubRowComponent` is provided, the click event can be handled directly within the component. | `optional` |
+  | `subRowCellClickEvent` | `function` | Function triggered when a cell in the `SubRow` is clicked. <br/><br/>\* Applicable only when `useParentRowUi` is set to `true`. <br/> If `SubRowComponent` is provided, the click event can be handled directly within the component. | `optional` |
 
 <br/>
 
 #### 2) TableHeader
 
-- 테이블 열 `column` 제목을 렌더링하는 컴포넌트입니다.
-- `header option` 을 통해 `layer`, `rowSpan`, `colSpan` 을 제어할 수 있습니다.
-- 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
+- This component renders the column headers of the table.
+- You can control `layer`, `rowSpan`, and `colSpan` via the `header option`.
+- The `props` to be passed when calling the component are as follows.
   | Props | Type | Explain | Required |
   | -------------- | ------------------ | -------------------------------------------------------------------------- | ---------- |
-  | `table` | `Table<TData>` | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다. | `required` |
-  | `style` | `CSSProperties` | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다. | `optional` |
-  | `className` | `string` | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다. | `optional` |
-  | `headerOption` | `HeaderOptionType` | `header` 렌더링과 관련된 세부 속성을 설정합니다. (자세한 설명 하단에 첨부) | `optional` |
+  | `table` | `Table<TData>` | The table data and method-related instance returned by the `useTable` hook. | `required` |
+  | `style` | `CSSProperties` | Set CSS properties via `inline Style`. | `optional` |
+  | `className` | `string` | Pass `class` to set CSS properties. | `optional` |
+  | `headerOption` | `HeaderOptionType` | Defines detailed properties related to rendering the `header`. (Detailed description attached below) | `optional` |
 
 <br/>
 
-- `header option` 의 `type` 은 아래와 같습니다.
+- The `header option` type is as follows.
   | Property | Type | Explain |
   | ------------- | -------- | ----------------------------------------------------------------------- |
-  | `accessorKey` | `string` | `header` 와 `header option`을 매핑하는 `key` 값 입니다. |
-  | `layer` | `number` | `header` 가 몇 번째 줄에서 시작할지 결정하는 값입니다. |
-  | `rowSpan` | `number` | 설정한 `layer` 를 기준으로 `header` 가 차지할 높이를 결정하는 값입니다. |
-  | `colSpan` | `number` | `header` 가 차지할 너비를 결정하는 값입니다. |
+  | `accessorKey` | `string` | The `key` value mapping the `header` with the `header option`. |
+  | `layer` | `number` | Determines on which row the `header` starts. |
+  | `rowSpan` | `number` | Determines the height the `header` occupies based on the specified `layer`. |
+  | `colSpan` | `number` | Determines the width the `header` occupies. |
 
 <br/>
 
 #### 3) TableBody
 
-- 실제 테이블 데이터를 렌더링하는 컴포넌트로, 각 행 `TableBodyRow` 와 이를 구성하는 셀 `TableBodyCell` 로 구성되어 있습니다.
-- 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
+- This component renders the actual table data and is composed of rows (`TableBodyRow`) and the cells that make up those rows (`TableBodyCell`).
+- The `props` to be passed when calling the component are as follows.
   | Props | Type | Explain | Required |
   | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-  | `table` | `Table<TData>` | `useTable` 훅이 반환하는 테이블 데이터 및 메서드 관련 인스턴스입니다. | `required` |
-  | `style` | `CSSProperties` | `inline Style` 을 통해 `CSS` 속성을 설정할 수 있습니다. | `optional` |
-  | `className` | `string` | `class` 를 전달하여 `CSS` 속성을 설정할 수 있습니다. 함수입니다. | `optional` |
-  | `subRowStyle` | `CSSProperties` | `subRow` 에 대한 `CSS` 커스텀이 필요할 경우, 해당 속성을 통해 적용이 가능합니다. <br/><br/> \* `useParentRowUi`를 `true`로 설정했을 때에 한함. <br/> `SubRowComponent` 를 전달한 경우, 해당 컴포넌트 내에서 직접 커스텀 하면 됨 | `optional` |
+  | `table` | `Table<TData>` | The table data and method-related instance returned by the `useTable` hook. | `required` |
+  | `style` | `CSSProperties` | Set CSS properties via `inline Style`. | `optional` |
+  | `className` | `string` | Pass `class` to set CSS properties. | `optional` |
+  | `subRowStyle` | `CSSProperties` | Customize `CSS` for `subRow` if necessary. <br/><br/> \* Applicable only when `useParentRowUi` is set to `true`. <br/> If `SubRowComponent` is provided, customization can be handled directly within the component. | `optional` |
 
 #### 4) TableFooter
 
-- 페이지네이션 기능을 담당하는 컴포넌트로, 해당 기능이 필요할 경우 선택적으로 활용 가능합니다.
-- 총 2개의 컴포넌트로 구성됩니다.
+- This component handles pagination functionality and can be used optionally when needed.
+- It consists of two main components:
 
-  1. `TablePagaSizeSelect` : 페이지 당 컨텐츠 개수를 변경하는 기능을 수행하는 컴포넌트입니다.
-  2. `TablePagination` : 페이지 번호를 변경하는 기능을 수행합니다.
+  1. `TablePageSizeSelect`: A component that allows changing the number of contents displayed per page.
+  2. `TablePagination`: Handles the page number changing functionality.
      <br/>
 
-- 컴포넌트 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
+- The `props` to be passed when calling the component are as follows.
   | Props | Type | Explain | Required |
   | --------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- |
-  | `pagination` | `PaginationState` | `useTable` 훅이 반환하는 페이지네이션 관련 상태입니다. | `required` |
-  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | `useTable` 훅이 반환하는 페이지네이션 관련 상태관리 함수입니다. | `required` |
-  | `totalPageNum` | `number` | `useTable` 훅이 반환하는 전체 페이지 개수 관련 데이터입니다. | `required` |
-  | `pageSizeList` | `Array<number>` | 한 페이지 당 표시할 컨텐츠 개수에 대한 옵션 리스트로, 기본 값으로 `[10, 15, 20, 25, 30]` 을 제공합니다. | `optional` |
+  | `pagination` | `PaginationState` | Pagination-related state returned by the `useTable` hook. | `required` |
+  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | Pagination state management function returned by the `useTable` hook. | `required` |
+  | `totalPageNum` | `number` | Total number of pages returned by the `useTable` hook. | `required` |
+  | `pageSizeList` | `Array<number>` | List of options for the number of contents displayed per page. The default values are `[10, 15, 20, 25, 30]`. | `optional` |
 
 <br/>
 
 #### 5) useTable
 
-- `TableHeader`, `TableBody`, `TableFooter` 컴포넌트의 `props`로 전달할 데이터를 반환하는 커스텀 훅입니다.
-- 훅 호출 시 전달해야 하는 `props` 는 아래와 같습니다.
+- A custom hook that returns the data to be passed as `props` for `TableHeader`, `TableBody`, and `TableFooter` components.
+- The `props` to be passed when calling the hook are as follows.
   | Props | Type | Explain | Required |
   | -------------- | --------------------- | ----------------------------------------------- | ---------- |
-  | `data` | `Array<T>` | 테이블 `body` 를 구성하는 데이터입니다. | `required` |
-  | `columns` | `Array<ColumnDef<T>>` | 테이블 `column` 설정에 활용되는 데이터입니다. | `required` |
-  | `isPagination` | `boolean` | 페이지네이션 설정 여부를 결정하는 데이터입니다. | `optional` |
+  | `data` | `Array<T>` | The data to be rendered in the table body. | `required` |
+  | `columns` | `Array<ColumnDef<T>>` | The data used to configure the table columns. | `required` |
+  | `isPagination` | `boolean` | Determines whether pagination is enabled. | `optional` |
 
 <br/>
 
-- 훅이 반환하는 값은 아래와 같습니다.
+- The values returned by the hook are as follows.
   | Returned Value | Type | Explain |
   | ---------------- | ------------------- | -------------------------------------------- |
-  | `table` | `Table<TData>` | 테이블 설정에 활용되는 인스턴스 객체입니다. `TableHeader`, `TableBody` 의 `props` 로 활용됩니다. |
-  | `pagination` | `PaginationState` | 페이지네이션 관련 상태입니다. `TableFooter`의 `props` 로 활용됩니다. |
-  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | 페이지네이션 관련 상태관리 함수입니다. `TableFooter`의 `props` 로 활용됩니다. |
+  | `table` | `Table<TData>` | The instance object used for table settings. Used as a `prop` in `TableHeader` and `TableBody`. |
+  | `pagination` | `PaginationState` | Pagination-related state. Used as a `prop` in `TableFooter`. |
+  | `setPagination` | `Dispatch<SetStateAction<PaginationState>>` | Pagination state management function. Used as a `prop` in `TableFooter`. |
 
 <br/>
 
 #### 6) useSubRowContent
 
-- `SubRow` 에 활용되는 데이터를 조회, 수정하는 함수를 반환하는 커스텀 훅입니다.
-- 내부적으로 `jotai atom` 을 활용하여 값을 저장합니다.
-- 훅이 반환하는 값은 아래와 같습니다.
+- A custom hook that returns functions to retrieve and modify data used in the `SubRow`.
+- Internally, `jotai atom` is used to store values.
+- The values returned by the hook are as follows.
   | Returned Value | Explain |
   | --------------------------- | ------------------------------------------------------------------------------------------------- |
-  | `getSubRowContentOfEntire` | 전체 `SubRow` 데이터를 조회하는 함수입니다. |
-  | `setSubRowContentOfEntire` | 전체 `SubRow` 데이터를 수정하는 함수입니다. |
-  | `getSubRowContentOfSelected` | 특정 `Row`에 종속되는 `SubRow` 데이터를 조회하는 함수입니다. |
-  | `setSubRowContentOfSelected` | 특정 `Row`에 종속되는 `SubRow` 데이터를 수정하는 함수입니다. |
+  | `getSubRowContentOfEntire` | A function that retrieves the data for the entire `SubRow`. |
+  | `setSubRowContentOfEntire` | A function that modifies the data for the entire `SubRow`. |
+  | `getSubRowContentOfSelected` | A function that retrieves the `SubRow` data for a specific row. |
+  | `setSubRowContentOfSelected` | A function that modifies the `SubRow` data for a specific row. |
 
 <br/>
 
 #### 7) Type
 
-- `props` 데이터, 커스텀 훅 및 이벤트 핸들러의 파라미터 설정 시 활용되는 `Type` 입니다.
+- `Type` definitions used for `props` data, custom hooks, and event handler parameters.
   | Type | Explain |
   | ------------------ | -------------------------------------------------------------------- |
-  | `ColumnDef` | `useTable` 의 파라미터 `columns` 데이터 관련 `Type` 입니다. |
-  | `Row` | `TableBodyRow` 에 활용되는 `Row` 데이터 관련 `Type` 입니다. |
-  | `Cell` | `TableBodyCell` 에 활용되는 `Cell` 데이터 관련 `Type` 입니다. |
-  | `HeaderOptionType` | `TableHeader` 에 전달하는 `headerOption` `props` 관련 `Type` 입니다. |
+  | `ColumnDef` | `Type` related to the `columns` parameter of `useTable`. |
+  | `Row` | `Type` related to `Row` data used in `TableBodyRow`. |
+  | `Cell` | `Type` related to `Cell` data used in `TableBodyCell`. |
+  | `HeaderOptionType` | `Type` related to the `headerOption` prop passed to `TableHeader`. |
 
   <br/>
 
-## 4. Logic (How it Works)
-
 ## 5. Usage (Sample Code)
 
-##### 1) config.ts
-
-- config.ts 파일에서 아래의 두 가지를 설정
-
-<br/>
-
-##### 2) ./aboutReactQuery/QueryProvider.tsx
-
-<br/>
-
-##### 3) ./useAuthManager/useAuthManager.ts
+- To be added
 
 ## 6. issue
-
-- 모듈에서 전역상태 관리 도구로 사용 중인 Recoil의 공식 업데이트가 중단 됨
-- Recoil과 유사하게 Atomic 패턴을 활용하는 Jotai로 마이그레이션 하는 방향 검토
