@@ -1,5 +1,6 @@
 import { CSSProperties, useRef } from "react";
 import { useTableContext } from "../../provider/TableProvider";
+import "../../style/style.css";
 
 interface DefaultSubRowProps {
   rowIndex: number;
@@ -7,10 +8,18 @@ interface DefaultSubRowProps {
   style?: CSSProperties;
   className?: string;
   subRowStyle?: CSSProperties;
+  subRowHoverColor?: string;
 }
 
 const DefaultSubRow = (props: DefaultSubRowProps) => {
-  const { rowIndex, contents, style, className, subRowStyle } = props;
+  const {
+    rowIndex,
+    contents,
+    style,
+    className,
+    subRowStyle,
+    subRowHoverColor,
+  } = props;
   const key = useRef(0);
   const { subRowClickEvent, subRowCellClickEvent } = useTableContext();
 
@@ -42,12 +51,29 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
     key.current += 1;
 
     return (
-      <tr key={key.current} onClick={handleClickSubRow}>
+      <tr
+        key={key.current}
+        className="subRow"
+        style={
+          {
+            cursor: "default",
+            backgroundColor: subRowStyle?.backgroundColor
+              ? subRowStyle.backgroundColor
+              : style?.backgroundColor,
+            "--subRow-hover-color": `${subRowHoverColor}`,
+          } as CSSProperties
+        }
+        onClick={handleClickSubRow}
+      >
         {values.map((value, cellIndex) => {
           return (
             <td
               key={value}
-              style={{ ...style, ...subRowStyle }}
+              style={{
+                ...style,
+                ...subRowStyle,
+                backgroundColor: "transparent",
+              }}
               className={className}
               onClick={(e) =>
                 handleClickSubRowCell({

@@ -1,10 +1,11 @@
 {
   "name": "tan-table",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "src/style/style.css",
     "package.json",
     "README.md",
     "README(ko).md"
