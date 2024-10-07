@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { subRowContentsAtom } from "../atom/subRowContentsAtom";
 
-const useSubRowContent = () => {
+export const useSubRowContent = () => {
   const [contents, setContents] = useAtom(subRowContentsAtom);
 
   const getSubRowContentOfEntrie = () => {
@@ -12,11 +12,11 @@ const useSubRowContent = () => {
     setContents(newContents);
   };
 
-  const getSubRowContentOfSelected = (rowIndex: number) => {
+  const getSubRowContentOfSelectedRow = (rowIndex: number) => {
     return contents[rowIndex];
   };
 
-  const setSubRowContenttOfSelected = (
+  const setSubRowContenttOfSelectedRow = (
     rowIndex: number,
     newSubRowContent: Array<object>
   ) => {
@@ -29,9 +29,7 @@ const useSubRowContent = () => {
   return {
     getSubRowContentOfEntrie,
     setSubRowContentOfEntire,
-    getSubRowContentOfSelected,
-    setSubRowContenttOfSelected,
+    getSubRowContentOfSelectedRow,
+    setSubRowContenttOfSelectedRow,
   };
 };
-
-export default useSubRowContent;

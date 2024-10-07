@@ -3,22 +3,19 @@ import TableBodyRow from "./TableBodyRow";
 import { TableProps } from "../../type/type";
 
 interface TableBodyProps<T> extends TableProps<T> {
-  subRowExpand?: boolean;
-  subRowStyle?: CSSProperties;
-  rowHoverColor?: string;
-  subRowHoverColor?: string;
+  interactiveStyles: {
+    hoverColor?: string;
+    clickedColor?: string;
+  };
+  subRowProps?: {
+    isExpand: boolean;
+    style?: CSSProperties;
+    hoverColor?: string;
+  };
 }
 
 const TableBody = <T,>(props: TableBodyProps<T>) => {
-  const {
-    table,
-    style,
-    className,
-    subRowExpand,
-    subRowStyle,
-    rowHoverColor,
-    subRowHoverColor,
-  } = props;
+  const { table, style, subRowProps, interactiveStyles } = props;
   const rows = table.getRowModel().rows;
 
   return (
@@ -27,12 +24,9 @@ const TableBody = <T,>(props: TableBodyProps<T>) => {
         <TableBodyRow
           key={row.id}
           style={style}
-          className={className}
           row={row}
-          subRowExpand={subRowExpand}
-          subRowStyle={subRowStyle}
-          rowHoverColor={rowHoverColor}
-          subRowHoverColor={subRowHoverColor}
+          subRowProps={subRowProps}
+          interactiveStyles={interactiveStyles}
         />
       ))}
     </tbody>

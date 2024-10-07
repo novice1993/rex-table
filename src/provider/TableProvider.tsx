@@ -1,38 +1,33 @@
-import React, {
+import {
   ComponentType,
   createContext,
   PropsWithChildren,
   useContext,
 } from "react";
 import TableContainer from "../components/TableContainer/TableContainer";
-import { Row } from "@tanstack/react-table";
+import { CellClickEventParam } from "../type/type";
 
-interface TableContextProps {
+interface TableProviderProps {
   SubRowComponent?: ComponentType<{ contents: Array<object> }>;
   useParentRowUi?: boolean;
-  rowClickEvent?: (row: Row<unknown>) => void;
-
+  rowClickEvent?: () => void;
+  cellClickEvent?: ({ cellIndex, rowIndex, e }: CellClickEventParam) => void;
   subRowClickEvent?: () => void;
   subRowCellClickEvent?: ({
     cellIndex,
-    parentRowIndex,
-    subRowIndex,
+    rowIndex,
     e,
-  }: {
-    cellIndex: number;
-    parentRowIndex?: number;
-    subRowIndex?: number;
-    e?: React.MouseEvent<HTMLTableCellElement>;
-  }) => void;
+  }: CellClickEventParam) => void;
 }
 
-const TableContext = createContext<TableContextProps | null>(null);
+const TableContext = createContext<TableProviderProps | null>(null);
 
-export const TableProvider = (props: PropsWithChildren<TableContextProps>) => {
+export const TableProvider = (props: PropsWithChildren<TableProviderProps>) => {
   const {
     SubRowComponent,
     useParentRowUi,
     rowClickEvent,
+    cellClickEvent,
     subRowClickEvent,
     subRowCellClickEvent,
   } = props;
@@ -43,6 +38,7 @@ export const TableProvider = (props: PropsWithChildren<TableContextProps>) => {
         SubRowComponent,
         useParentRowUi,
         rowClickEvent,
+        cellClickEvent,
         subRowClickEvent,
         subRowCellClickEvent,
       }}
@@ -59,7 +55,5 @@ export const useTableContext = () => {
     console.error("useTableContext  must be used within a TableProvider");
   }
 
-  return context as TableContextProps;
+  return context as TableProviderProps;
 };
-
-export default TableProvider;

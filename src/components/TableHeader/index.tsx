@@ -4,7 +4,7 @@ import { getHeader } from "../../util/header.util";
 import TableHeaderRow from "./TableHeaderRow";
 
 const TableHeader = <T,>(props: TableProps<T>) => {
-  const { table, headerOption, style, className } = props;
+  const { table, headerOption, style } = props;
   const headerGroups = getHeader({ table, headerOption });
 
   return (
@@ -12,7 +12,6 @@ const TableHeader = <T,>(props: TableProps<T>) => {
       {headerGroups.map((headerGroup) => (
         <TableHeaderRow
           key={headerGroup.depth}
-          className={className}
           style={style}
           headerGroup={headerGroup}
         />

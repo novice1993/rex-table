@@ -1,45 +1,51 @@
 import { CSSProperties, useState } from "react";
+import { Row } from "@tanstack/react-table";
+import { setClickedRowContent } from "../../util/content.util";
+
 import TableCell from "./TableBodyCell";
 import TableSubRow from "./TableSubRow";
-import { Row } from "@tanstack/react-table";
 import { useTableContext } from "../../provider/TableProvider";
-import "../../style/style.css";
+import "./style.css";
 
 interface TableBodyRowProps<T> {
   row: Row<T>;
   style?: CSSProperties;
-  className?: string;
 
-  subRowExpand?: boolean;
-  subRowStyle?: CSSProperties;
+  subRowProps?: {
+    isExpand: boolean;
+    style?: CSSProperties;
+    hoverColor?: string;
+  };
 
-  rowHoverColor?: string;
-  subRowHoverColor?: string;
+  interactiveStyles: {
+    hoverColor?: string;
+    clickedColor?: string;
+  };
 }
 
 const TableBodyRow = <T,>(props: TableBodyRowProps<T>) => {
-  const {
-    row,
-    style,
-    className,
-    subRowExpand,
-    subRowStyle,
-    rowHoverColor,
-    subRowHoverColor,
-  } = props;
-  const [isRowExapnd, setRowExpand] = useState(false);
+  const { row, style, interactiveStyles, subRowProps } = props;
 
   const cellGroup = row.getVisibleCells();
-  const { rowClickEvent } = useTableContext();
+  const { hoverColor, clickedColor } = interactiveStyles;
 
-  const handleRowClick = (e: React.MouseEvent<HTMLTableRowElement>) => {
-    if (subRowExpand) {
-      setRowExpand(!isRowExapnd);
+  const { rowClickEvent } = useTableContext();
+  const [isRowClicked, setRowClick] = useState(false);
+
+  const handleClickRow = (e: React.MouseEvent<HTMLTableRowElement>) => {
+    e.stopPropagation();
+    setClickedRowContent(row.original);
+
+    if (subRowProps?.isExpand) {
+      row.toggleExpanded();
+    }
+
+    if (clickedColor) {
+      setRowClick(!isRowClicked);
     }
 
     if (rowClickEvent) {
-      e.stopPropagation();
-      rowClickEvent(row as Row<unknown>);
+      rowClickEvent();
     }
   };
 
@@ -47,36 +53,40 @@ const TableBodyRow = <T,>(props: TableBodyRowProps<T>) => {
     <>
       <tr
         key={row.id}
-        onClick={handleRowClick}
+        onClick={handleClickRow}
         style={
           {
             cursor: "default",
-            backgroundColor: style?.backgroundColor,
-            "--row-hover-color": `${rowHoverColor}`,
+            "--row-hover-color": `${hoverColor}`,
+            backgroundColor: isRowClicked
+              ? clickedColor
+              : style?.backgroundColor,
           } as CSSProperties
         }
         className="row"
       >
-        {cellGroup.map((cell) => {
+        {cellGroup.map((cell, index) => {
           return (
             <TableCell
               key={cell.id}
               cell={cell}
+              index={index}
+              rowIndex={row.index}
               style={style}
-              className={className}
             />
           );
         })}
       </tr>
 
       {/* Sub Row */}
-      {isRowExapnd && (
+      {row.getIsExpanded() && (
         <TableSubRow
           row={row}
           style={style}
-          className={className}
-          subRowStyle={subRowStyle}
-          subRowHoverColor={subRowHoverColor}
+          subRowStyles={{
+            style: subRowProps?.style,
+            hoverColor: subRowProps?.hoverColor,
+          }}
         />
       )}
     </>

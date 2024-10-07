@@ -21,8 +21,13 @@ interface TableManagerProps<T> {
 const useTable = <T>(props: TableManagerProps<T>) => {
   const { data, columns, isPagination = false } = props;
 
-  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 10 });
-  const [sorting, setSorting] = useState<SortingState>([{ id: "No", desc: false }]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: "No", desc: false },
+  ]);
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
   const table = useReactTable<T>({
