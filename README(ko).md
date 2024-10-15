@@ -9,8 +9,8 @@
 
 ### Installation
 
-- using npm : `npm install rex-table`
-- using yarn : `yarn add rex-table`
+- using npm : `npm install rex-web-table`
+- using yarn : `yarn add rex-web-table`
 
 ### CSS Import
 
@@ -18,7 +18,7 @@
 
 ```typescript
 /** 라이브러리를 사용할 때 행과 서브 행의 `hoverColor`가 올바르게 적용되도록 합니다. **/
-import "rex-table/src/style/style.css";
+import "rex-web-table/src/style/style.css";
 ```
 
 ### Example
@@ -292,7 +292,7 @@ const headerOption: HeaderOptionType[] = [
 
 ```typescript
 /* hover 스타일을 올바르게 적용하려면 이 CSS import가 필요합니다. */
-import "rex-table/src/style/style.css";
+import "rex-web-table/src/style/style.css";
 
 <TableBody
   table={table} // useTable 훅에서 반환된 테이블 데이터 인스턴스 전달

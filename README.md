@@ -11,8 +11,8 @@
 
 ### Installation
 
-- using npm: `npm install rex-table`
-- using yarn: `yarn add rex-table`
+- using npm: `npm install rex-web-table`
+- using yarn: `yarn add rex-web-table`
 
 ### CSS Import
 
@@ -20,7 +20,7 @@
 
 ```typescript
 /** This will ensure that the `hoverColor` for rows and sub-rows is applied correctly when using the library. **/
-import "rex-table/src/style/style.css";
+import "rex-web-table/src/style/style.css";
 ```
 
 ### Example
@@ -291,7 +291,7 @@ const headerOption: HeaderOptionType[] = [
 
 ```typescript
 /* This CSS import is required for the hover styles to be applied properly. */
-import "rex-table/src/style/style.css";
+import "rex-web-table/src/style/style.css";
 
 <TableBody
   table={table} // Pass the table data instance returned by the useTable hook
