@@ -19,13 +19,15 @@
 - To apply hover styles for rows and sub-rows, import the provided CSS file:
 
 ```typescript
-/** This will ensure that the `hoverColor` for rows and sub-rows is applied correctly when using the library. **/
-import "rex-web-table/src/style/style.css";
+/* CSS import is required to apply the styles correctly. */
+import "rex-web-table/dist/TableBody/style.css";
 ```
 
 ### Example
 
 ```typescript
+import "rex-web-table/dist/TableBody/style.css";
+
 const Table = () => {
   // 1. Define the data type for each row in the table
   interface Example {
@@ -287,12 +289,7 @@ const headerOption: HeaderOptionType[] = [
 
 <br/>
 
-**Note:** To apply the `hoverColor` for rows and sub-rows, make sure to import the CSS file:
-
 ```typescript
-/* This CSS import is required for the hover styles to be applied properly. */
-import "rex-web-table/src/style/style.css";
-
 <TableBody
   table={table} // Pass the table data instance returned by the useTable hook
   style={{
@@ -305,7 +302,7 @@ import "rex-web-table/src/style/style.css";
     hoverColor: "white", // Set background color when hovering over a row
     clickedColor: "black", // Set background color when a row is clicked
   }}
-/>;
+/>
 ```
 
 <br/>

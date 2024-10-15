@@ -6,7 +6,7 @@ import TableCell from "./TableBodyCell";
 import TableSubRow from "./TableSubRow";
 import { useTableContext } from "../../provider/TableProvider";
 
-import "../../style/style.css";
+import "./style.css";
 
 interface TableBodyRowProps<T> {
   row: Row<T>;

@@ -14,16 +14,16 @@
 
 ### CSS Import
 
-- 행과 서브 행의 hover 스타일을 적용하려면 제공된 CSS 파일을 import하세요:
-
 ```typescript
-/** 라이브러리를 사용할 때 행과 서브 행의 `hoverColor`가 올바르게 적용되도록 합니다. **/
-import "rex-web-table/src/style/style.css";
+/* 스타일을 올바르게 적용하려면 CSS import가 필요합니다. */
+import "rex-web-table/dist/TableBody/style.css";
 ```
 
 ### Example
 
 ```typescript
+import "rex-web-table/src/style/style.css";
+
 const Table = () => {
   // 1. 테이블의 각 행에 대한 데이터 타입 정의
   interface Example {
@@ -288,12 +288,7 @@ const headerOption: HeaderOptionType[] = [
 
 <br/>
 
-**Note:** 행과 서브 행의 `hoverColor` 을 적용하려면 반드시 CSS 파일을 import해야 합니다:
-
 ```typescript
-/* hover 스타일을 올바르게 적용하려면 이 CSS import가 필요합니다. */
-import "rex-web-table/src/style/style.css";
-
 <TableBody
   table={table} // useTable 훅에서 반환된 테이블 데이터 인스턴스 전달
   style={{
@@ -306,7 +301,7 @@ import "rex-web-table/src/style/style.css";
     hoverColor: "white", // 행 hover 시 배경색 설정
     clickedColor: "black", // 행 클릭 시 배경색 설정
   }}
-/>;
+/>
 ```
 
 <br/>
