@@ -5,42 +5,51 @@ import {
   useContext,
 } from "react";
 import TableContainer from "../components/TableContainer/TableContainer";
-import { CellClickEventParam } from "../type/type";
+import { RowClickEventParam, CellClickEventParam } from "../type/type";
 
 interface TableProviderProps {
   SubRowComponent?: ComponentType<{ contents: Array<object> }>;
+  subRowContents?: Array<object[]>;
   useParentRowUi?: boolean;
-  rowClickEvent?: () => void;
+  rowClickEvent?: ({ rowIndex, e }: RowClickEventParam) => void;
   cellClickEvent?: ({ cellIndex, rowIndex, e }: CellClickEventParam) => void;
-  subRowClickEvent?: () => void;
+  subRowClickEvent?: ({ rowIndex, e }: RowClickEventParam) => void;
   subRowCellClickEvent?: ({
     cellIndex,
     rowIndex,
     e,
   }: CellClickEventParam) => void;
+  borderLeftNone?: boolean;
+  borderTopNone?: boolean;
 }
 
 const TableContext = createContext<TableProviderProps | null>(null);
 
-export const TableProvider = (props: PropsWithChildren<TableProviderProps>) => {
+const TableProvider = (props: PropsWithChildren<TableProviderProps>) => {
   const {
     SubRowComponent,
+    subRowContents,
     useParentRowUi,
     rowClickEvent,
     cellClickEvent,
     subRowClickEvent,
     subRowCellClickEvent,
+    borderLeftNone,
+    borderTopNone,
   } = props;
 
   return (
     <TableContext.Provider
       value={{
         SubRowComponent,
+        subRowContents,
         useParentRowUi,
         rowClickEvent,
         cellClickEvent,
         subRowClickEvent,
         subRowCellClickEvent,
+        borderLeftNone,
+        borderTopNone,
       }}
     >
       <TableContainer>{props.children}</TableContainer>
@@ -57,3 +66,5 @@ export const useTableContext = () => {
 
   return context as TableProviderProps;
 };
+
+export default TableProvider;

@@ -13,8 +13,13 @@ export interface TableProps<T> {
   style?: CSSProperties;
 }
 
-export interface CellClickEventParam {
-  cellIndex: number;
+export interface RowClickEventParam {
   rowIndex: number;
+  e: React.MouseEvent<HTMLTableRowElement>;
+}
+
+export interface CellClickEventParam {
+  rowIndex: number;
+  cellIndex: number;
   e: React.MouseEvent<HTMLTableCellElement>;
 }

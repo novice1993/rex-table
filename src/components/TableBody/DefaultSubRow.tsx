@@ -4,7 +4,8 @@ import {
   setClickedRowContent,
   setClickedCellContent,
 } from "../../util/content.util";
-import "./style.css";
+
+import "../../style/style.css";
 
 interface DefaultSubRowProps {
   contents: Array<object>;
@@ -20,17 +21,18 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
   const { contents, style, subRowStyles } = props;
 
   const key = useRef(0);
-  const { subRowClickEvent, subRowCellClickEvent } = useTableContext();
+  const { subRowClickEvent, subRowCellClickEvent, borderLeftNone } =
+    useTableContext();
 
   const handleClickSubRow = (
+    rowIndex: number,
     e: React.MouseEvent<HTMLTableRowElement>,
     content: object
   ) => {
-    e.stopPropagation();
     setClickedRowContent(content);
 
     if (subRowClickEvent) {
-      subRowClickEvent();
+      subRowClickEvent({ rowIndex, e });
     }
   };
 
@@ -61,7 +63,7 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
             "--subRow-hover-color": `${subRowStyles?.hoverColor}`,
           } as CSSProperties
         }
-        onClick={(e) => handleClickSubRow(e, content)}
+        onClick={(e) => handleClickSubRow(rowIndex, e, content)}
       >
         {values.map((value, cellIndex) => {
           return (
@@ -71,6 +73,8 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
                 ...style,
                 ...subRowStyles?.style,
                 backgroundColor: undefined,
+                height: "36px",
+                borderLeft: borderLeftNone ? "none" : style?.border,
               }}
               onClick={(e) => {
                 setClickedCellContent(value);

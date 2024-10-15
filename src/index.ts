@@ -7,7 +7,18 @@ export { default as TableFooter } from "./components/TableFooter/index";
 /** Custom Hook */
 export { default as useTable } from "./hook/useTable";
 export { default as useSubRowContent } from "./hook/useSubRowContent";
+export { default as useSubRowExpand } from "./hook/useSubRowExpand";
+
+/** Utils */
+export {
+  getClickedRowContent,
+  getClickedCellContent,
+} from "./util/content.util";
 
 /** Type */
-export type { ColumnDef, Row, Cell } from "@tanstack/react-table";
-export type { HeaderOptionType } from "./type/type";
+export type { ColumnDef } from "@tanstack/react-table";
+export type {
+  HeaderOptionType,
+  RowClickEventParam,
+  CellClickEventParam,
+} from "./type/type";

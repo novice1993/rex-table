@@ -3,19 +3,12 @@ import { Dispatch, SetStateAction } from "react";
 
 type SetPaginationType = Dispatch<SetStateAction<PaginationState>>;
 
-// 1) page size select
-export const checkDefaultSizeExist = (
-  sizeList: Array<number>,
-  defaulSize: number
-) => {
-  if (!sizeList.includes(defaulSize)) {
-    sizeList.push(defaulSize);
-    sizeList.sort((a, b) => a - b);
-  }
+export const getMedianIndexOfArray = (arr: number[]) => {
+  return Math.floor(arr.length / 2);
 };
 
-export const handleChangePageSize = (
-  pageSize: string | null,
+export const changePageSize = (
+  pageSize: string | undefined,
   setPagination: SetPaginationType
 ) => {
   setPagination((prevState: PaginationState) => {
@@ -60,7 +53,7 @@ export const generatePageNumbers = (
 
   /* When the total number of pages is 7 or less */
   if (totalPageNum <= 7) {
-    return Array.from(createStartPages(5));
+    return Array.from(createStartPages(totalPageNum));
   }
 
   /* When the total number of pages is 8 or more */

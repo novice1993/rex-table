@@ -1,35 +1,15 @@
-import { useAtom } from "jotai";
-import { subRowContentsAtom } from "../atom/subRowContentsAtom";
+import { useState, Dispatch, SetStateAction } from "react";
 
-export const useSubRowContent = () => {
-  const [contents, setContents] = useAtom(subRowContentsAtom);
+interface ReturnType {
+  subRowContents: Array<object[]> | undefined;
+  setSubRowContents: Dispatch<SetStateAction<Array<object[]> | undefined>>;
+}
 
-  const getSubRowContentOfEntrie = () => {
-    return contents;
-  };
+type ContentsType = Array<object[]> | undefined;
 
-  const setSubRowContentOfEntire = (newContents: Array<object[]>) => {
-    setContents(newContents);
-  };
-
-  const getSubRowContentOfSelectedRow = (rowIndex: number) => {
-    return contents[rowIndex];
-  };
-
-  const setSubRowContenttOfSelectedRow = (
-    rowIndex: number,
-    newSubRowContent: Array<object>
-  ) => {
-    setContents((prevState: Array<object[]>) => {
-      prevState[rowIndex] = newSubRowContent;
-      return prevState;
-    });
-  };
-
-  return {
-    getSubRowContentOfEntrie,
-    setSubRowContentOfEntire,
-    getSubRowContentOfSelectedRow,
-    setSubRowContenttOfSelectedRow,
-  };
+const useSubRowContents = (initState?: Array<object[]>): ReturnType => {
+  const [subRowContents, setSubRowContents] = useState<ContentsType>(initState);
+  return { subRowContents, setSubRowContents };
 };
+
+export default useSubRowContents;

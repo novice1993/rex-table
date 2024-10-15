@@ -5,19 +5,20 @@ import { setClickedRowContent } from "../../util/content.util";
 import TableCell from "./TableBodyCell";
 import TableSubRow from "./TableSubRow";
 import { useTableContext } from "../../provider/TableProvider";
-import "./style.css";
+
+import "../../style/style.css";
 
 interface TableBodyRowProps<T> {
   row: Row<T>;
   style?: CSSProperties;
 
   subRowProps?: {
-    isExpand: boolean;
+    expandState?: boolean[];
     style?: CSSProperties;
     hoverColor?: string;
   };
 
-  interactiveStyles: {
+  interactiveStyles?: {
     hoverColor?: string;
     clickedColor?: string;
   };
@@ -27,25 +28,19 @@ const TableBodyRow = <T,>(props: TableBodyRowProps<T>) => {
   const { row, style, interactiveStyles, subRowProps } = props;
 
   const cellGroup = row.getVisibleCells();
-  const { hoverColor, clickedColor } = interactiveStyles;
 
   const { rowClickEvent } = useTableContext();
   const [isRowClicked, setRowClick] = useState(false);
 
   const handleClickRow = (e: React.MouseEvent<HTMLTableRowElement>) => {
-    e.stopPropagation();
     setClickedRowContent(row.original);
 
-    if (subRowProps?.isExpand) {
-      row.toggleExpanded();
-    }
-
-    if (clickedColor) {
+    if (interactiveStyles?.clickedColor) {
       setRowClick(!isRowClicked);
     }
 
     if (rowClickEvent) {
-      rowClickEvent();
+      rowClickEvent({ rowIndex: row.index, e });
     }
   };
 
@@ -57,9 +52,9 @@ const TableBodyRow = <T,>(props: TableBodyRowProps<T>) => {
         style={
           {
             cursor: "default",
-            "--row-hover-color": `${hoverColor}`,
+            "--row-hover-color": `${interactiveStyles?.hoverColor}`,
             backgroundColor: isRowClicked
-              ? clickedColor
+              ? interactiveStyles?.clickedColor
               : style?.backgroundColor,
           } as CSSProperties
         }
@@ -79,7 +74,7 @@ const TableBodyRow = <T,>(props: TableBodyRowProps<T>) => {
       </tr>
 
       {/* Sub Row */}
-      {row.getIsExpanded() && (
+      {subRowProps?.expandState?.[row.index] && (
         <TableSubRow
           row={row}
           style={style}
