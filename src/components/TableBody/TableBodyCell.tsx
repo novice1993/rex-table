@@ -38,6 +38,9 @@ const TableBodyCell = <T,>({
         ...style,
         backgroundColor: undefined,
         height: "36px",
+        borderTop: style?.border,
+        borderRight: style?.border,
+        borderBottom: style?.border,
         borderLeft: borderLeftNone ? "none" : style?.border,
       }}
       onClick={handleClickCell}

@@ -12,6 +12,8 @@ const TableHeader = <T,>(props: TableProps<T>) => {
     <thead
       style={{
         ...style,
+        borderRight: style?.border,
+        borderBottom: style?.border,
         borderLeft: borderLeftNone ? "none" : style?.border,
         borderTop: borderTopNone ? "none" : style?.border,
       }}

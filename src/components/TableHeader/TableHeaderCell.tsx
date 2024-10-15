@@ -10,7 +10,7 @@ interface TableHeaderCellProps<T> {
 
 const TableHeaderCell = <T,>({ header, style }: TableHeaderCellProps<T>) => {
   const headerName = header.column.columnDef.header as ReactNode;
-  const { borderTopNone } = useTableContext();
+  const { borderLeftNone, borderTopNone } = useTableContext();
 
   return (
     <th
@@ -19,7 +19,9 @@ const TableHeaderCell = <T,>({ header, style }: TableHeaderCellProps<T>) => {
         width: `${header.getSize()}px`,
         ...style,
         height: "28px",
-        borderLeft: "none",
+        borderRight: style?.border,
+        borderBottom: style?.border,
+        borderLeft: borderLeftNone ? "none" : style?.border,
         borderTop: borderTopNone ? "none" : style?.border,
       }}
       colSpan={header.colSpan}

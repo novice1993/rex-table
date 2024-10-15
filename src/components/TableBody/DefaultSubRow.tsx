@@ -74,6 +74,9 @@ const DefaultSubRow = (props: DefaultSubRowProps) => {
                 ...subRowStyles?.style,
                 backgroundColor: undefined,
                 height: "36px",
+                borderTop: style?.border,
+                borderRight: style?.border,
+                borderBottom: style?.border,
                 borderLeft: borderLeftNone ? "none" : style?.border,
               }}
               onClick={(e) => {
