@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   ColumnDef,
   getCoreRowModel,
@@ -21,12 +21,9 @@ const useTable = <T>(props: TableManagerProps<T>) => {
     pageSize: 10,
   });
 
-  const memoizedData = useMemo(() => data, [data]);
-  const memoizedColumns = useMemo(() => columns, [columns]);
-
   const table = useReactTable<T>({
-    data: memoizedData,
-    columns: memoizedColumns,
+    data,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: isPagination ? getPaginationRowModel() : undefined,
     onPaginationChange: setPagination,
