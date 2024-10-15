@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   ColumnDef,
   getCoreRowModel,
@@ -27,23 +28,17 @@ const useTable = <T>(props: TableManagerProps<T>) => {
   //   { id: "No", desc: false },
   // ]);
 
-  const table = useReactTable<T>({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-
-    // 1) about pagination
-    getPaginationRowModel: isPagination ? getPaginationRowModel() : undefined,
-    onPaginationChange: setPagination,
-
-    // 2) about sorting
-    // getSortedRowModel: getSortedRowModel(),
-    // onSortingChange: setSorting,
-    // enableSortingRemoval: false,
-
-    // state: { pagination, sorting },
-    state: { pagination },
-  });
+  // Memoize the table instance
+  const table = useMemo(() => {
+    return useReactTable<T>({
+      data,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: isPagination ? getPaginationRowModel() : undefined,
+      onPaginationChange: setPagination,
+      state: { pagination },
+    });
+  }, [data, columns, isPagination, pagination]);
 
   return {
     table,

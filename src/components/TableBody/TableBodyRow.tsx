@@ -5,7 +5,6 @@ import { setClickedRowContent } from "../../util/content.util";
 import TableCell from "./TableBodyCell";
 import TableSubRow from "./TableSubRow";
 import { useTableContext } from "../../provider/TableProvider";
-
 import "./style.css";
 
 interface TableBodyRowProps<T> {
