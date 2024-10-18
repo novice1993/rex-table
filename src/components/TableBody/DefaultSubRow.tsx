@@ -5,7 +5,7 @@ import {
   setClickedCellContent,
 } from "../../util/content.util";
 
-import "./style.css";
+import "@/components/TableBody/style.css";
 
 interface DefaultSubRowProps {
   contents: Array<object>;

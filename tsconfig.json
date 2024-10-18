@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2020", // 최신 JavaScript 기능을 사용
-    "module": "ESNext", // 모듈 시스템 설정
-    "declaration": true, // .d.ts 파일 생성
-    "outDir": "./dist", // 빌드된 파일이 저장될 위치
-    "strict": true, // 엄격한 타입 검사
-    "jsx": "react-jsx", // React JSX 설정
-    "moduleResolution": "node", // Node.js 스타일 모듈 해석
-    "esModuleInterop": true, // CommonJS와 ES 모듈 호환
-    "skipLibCheck": true, // 라이브러리 타입 검사 건너뜀
-    "forceConsistentCasingInFileNames": true, // 파일 대소문자 일관성 유지
-    "isolatedModules": true, // 모듈을 개별적으로 처리 (Bundler 모드에서 필요)
-    "noEmitOnError": true // 오류가 발생하면 빌드 중단
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx"
   },
-  "include": ["src/**/*"], // 빌드할 파일 경로 지정
-  "exclude": ["node_modules", "dist"] // 빌드에서 제외할 파일
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

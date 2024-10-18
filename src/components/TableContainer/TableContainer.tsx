@@ -7,6 +7,7 @@ const TableContainer = ({ children }: { children: ReactNode }) => {
         width: "100%",
         height: "fit-content",
         borderCollapse: "collapse",
+        tableLayout: "fixed",
       }}
     >
       {children}

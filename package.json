@@ -1,18 +1,17 @@
 {
   "name": "rex-web-table",
-  "version": "1.0.7",
-  "main": "dist/index.js",
+  "version": "1.0.11",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/components/TableBody/style.css",
     "package.json",
     "README.md",
-    "README(ko).md"
+    "README(en).md"
   ],
   "scripts": {
-    "build": "tsc",
-    "postbuild": "cpx src/style/style.css dist/components/TableBody"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@tanstack/react-table": "^8.20.5"
@@ -22,9 +21,12 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/node": "^22.7.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "cpx": "^1.5.0",
-    "typescript": "^5.5.3"
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.2.4"
   }
 }
